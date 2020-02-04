@@ -1,32 +1,23 @@
-import {Injectable, Logger} from '@nestjs/common';
-import {Demand, DemandModel} from './types/demand.type';
-import {ObjectId} from 'mongodb';
-import {DemandInput} from './types/demand.input';
+import { Injectable } from '@nestjs/common';
+import { DemandModel } from './models/demand.model';
+import { InjectModel } from 'nestjs-typegoose';
+import { ReturnModelType } from '@typegoose/typegoose';
 
 @Injectable()
 export class DemandService {
+  constructor(@InjectModel(DemandModel) private readonly demandModel: ReturnModelType<typeof DemandModel>) {}
 
-  async create( demand: DemandInput) {
-    const createDemand = new DemandModel(demand as Demand);
-
-    return createDemand.save({validateBeforeSave: true}, (err) => Logger.error(err, 'errorsave'));
-
-    // let response;
-    // try {
-    //   response = await createDemand.save({validateBeforeSave: true}, (err) => Logger.error(err, 'errorsave'));
-    //   Logger.log(JSON.stringify(response), 'response');
-    // } catch (e) {
-    //   Logger.error(e);
-    // }
-    // return response;
+  async create( demand: DemandModel) {
+    const createDemand = new this.demandModel(demand);
+    return createDemand.save();
   }
 
-  async find(): Promise<Demand[] | null> {
-    return DemandModel.find({});
+  async findAll(): Promise<DemandModel[] | null> {
+    return this.demandModel.find().exec();
   }
 
-  async findById(id: ObjectId): Promise<Demand | null> {
-    return DemandModel.findById(id);
+  async findOne(id: string): Promise<DemandModel | null> {
+    return this.demandModel.findById(id);
   }
 
   // async update(id: string, demand: UserModel): Promise<UserModel> {

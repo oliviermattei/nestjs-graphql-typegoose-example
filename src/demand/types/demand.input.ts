@@ -1,8 +1,7 @@
-import {Field, InputType} from 'type-graphql';
-import {Demand} from './demand.type';
+import { Field, InputType } from 'type-graphql';
 
 @InputType()
-export class DemandInput implements Partial<Demand> {
+export class DemandInput {
   @Field()
   readonly name: string;
 }

@@ -17,7 +17,7 @@ export class UserService {
   }
 
   async findOne(id: string): Promise<UserModel | null> {
-    return this.userModel.findOne({ _id: id });
+    return this.userModel.findOne(id);
   }
 
   // async update(id: string, user: UserModel): Promise<UserModel> {

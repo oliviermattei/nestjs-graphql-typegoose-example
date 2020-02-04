@@ -1,8 +1,7 @@
-import {Module} from '@nestjs/common';
-import {TypegooseModule} from 'nestjs-typegoose';
-import {GraphQLModule} from '@nestjs/graphql';
-import {DemandModule} from './demand/demand.module';
-import {UserModule} from './user/user.module';
+import { Module } from '@nestjs/common';
+import { TypegooseModule } from 'nestjs-typegoose';
+import { GraphQLModule } from '@nestjs/graphql';
+import { DemandModule } from './demand/demand.module';
 
 @Module({
   imports: [
@@ -13,7 +12,7 @@ import {UserModule} from './user/user.module';
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
-    UserModule,
+    // UserModule,
     DemandModule,
   ],
 })

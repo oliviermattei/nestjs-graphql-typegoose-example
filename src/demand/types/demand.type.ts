@@ -1,16 +1,11 @@
 import {Field, ObjectType} from 'type-graphql';
-import {getModelForClass, prop as Property} from '@typegoose/typegoose';
 import {ObjectIdScalar} from '../../scalars/objectId.scalar';
-import {ObjectId} from 'mongodb';
 
 @ObjectType()
 export class Demand {
-  @Field(type => ObjectIdScalar)
-  readonly _id: ObjectId;
+  @Field(type => ObjectIdScalar, { nullable: true })
+  _id?: string;
 
-  @Field()
-  @Property()
-  name: string;
+  @Field({ nullable: true })
+  name?: string;
 }
-
-export const DemandModel = getModelForClass(Demand);

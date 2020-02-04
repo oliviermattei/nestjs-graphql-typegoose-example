@@ -1,5 +1,5 @@
-import {Field, ObjectType} from 'type-graphql';
-import {ObjectIdScalar} from '../scalars/objectId.scalar';
+import { Field, ObjectType } from 'type-graphql';
+import { ObjectIdScalar } from '../scalars/objectId.scalar';
 
 @ObjectType()
 export class User {
